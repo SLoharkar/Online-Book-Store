@@ -24,7 +24,8 @@ git clone https://github.com/SLoharkar/Online-Book-Store.git
 
 ## Website Trailer
 
-https://github.com/SLoharkar/Online-Book-Store/assets/68845746/c8b7cc2f-a293-48c4-8ffe-ef252a762f06
+
+https://github.com/SLoharkar/Online-Book-Store/assets/68845746/6cfab389-498e-42ad-82d2-2c26738284f8
 
 
 
