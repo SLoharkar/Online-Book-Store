@@ -1,0 +1,251 @@
+<html xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="utf-8">
+      <title>Menu</title>
+ 
+ <!-- Include CSS File -->
+ 
+      <link th:href="@{/css/menu_style.css}" rel="stylesheet">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+
+<style>
+button {
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+   select {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.form-control{
+width: 200px;
+  padding: 10px;
+  border: 1px solid black;
+  
+}
+
+
+ table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: orange;
+}
+
+th {
+  background-color: yellow;
+}
+ 
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
+  color:white;
+}
+
+
+</style>
+
+   
+   <body>   
+      <nav>
+         <div class="logo">
+            Online Book Store
+         </div>
+         <label for="click" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         </label>
+         <ul>
+            <li><a href="/User_Home">Home</a></li>
+            <li><a class="active" href="/User_Books">Search Book</a></li>
+            <li><a href="/User_Buy_Book">Buy Book</a></li>
+            <li><a href="/Order_Details">Order Details</a></li>
+            <li><a href="#"><span th:text="${User}"></span></a></li>
+            <li><a href="/">Logout</a></li>
+         </ul>
+      </nav>
+
+      
+
+   
+<br>
+     
+&nbsp;<h2><span style="background-color: yellow; color: black; background-size: cover;">Choose Book Operation</span></h2>
+
+&nbsp;
+<form action="/user_select_operation" method="post" id="form1">  
+<select id="book_operation" name="book_operation">
+  	<option value="None">None</option>
+    <option value="Search">Search Book</option>
+    <option value="Display">Display Book</option>
+    <option value="R&R">Rate and Reviews Book</option>
+    
+ </select> <br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Search Book -->
+<div th:if="${selectSearch == 'Search'}">
+<br>
+<h1><span style="background-color: yellow; color: black; background-size: cover;">Search Book By Title</span></h1>
+
+ <form class="form" action="/user_search_Book" method="post" onsubmit="return validateForm2()" id="Form_Search">
+  	<br><br>
+    <input type="text" class="form-control" name="Book_title" placeholder="Book title" value="Mahabharat"><br><br>
+    
+   <button type="submit">Search</button>
+</form>
+
+</div>
+
+<script>
+function validateForm2() {
+	  let b1 = document.forms["Form_Search"]["Book_title"].value;
+	  if (b1 == "") {
+	    swal("Book Tittle Must be filled out");
+	    return false;
+	  }
+}
+</script>
+
+
+
+
+
+
+<!-- Display Book -->
+
+<div th:if="${selectDisplay == 'Display'}">
+        <table>
+                 <tr>
+                    <th>Book Tittle</th>
+                    <th>Author</th>
+                    <th>Reviews</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                </tr>
+                <tr th:each="BookArray : ${BookObject}">
+                <td th:text="${BookArray.getBook_title()}"></td>
+                <td th:text="${BookArray.getAuthor()}"></td>
+                <td th:text="${BookArray.getReviews()}"></td>
+                <td th:text="${BookArray.getRate()}"></td>
+                <td th:text="${BookArray.getPrice()}"></td>
+                
+                </tr>
+                     
+        </table>
+</div>
+
+
+
+
+
+<!-- Rate & Reviews Book -->
+
+
+<!-- Search Book -->
+<div th:if="${selectRR == 'RR'}">
+<br>
+<h1><span style="background-color: yellow; color: black; background-size: cover;">Rate & Review By User</span></h1>
+
+ <form class="form" action="/user_Rate_Book" method="post" onsubmit="return validateForm3()" id="Form_Rate">
+  	<br>
+    <input type="text" class="form-control" name="Book_title" placeholder="Book title" value="Book Tittle">
+<span class="heading" style="background-color: blue; color: white; background-size: cover;">User Reviews</span>    
+    <input type="text" class="form-control" name="Reviews" placeholder="Reviews" value="Reviews">
+<span class="heading" style="background-color: blue; color: white; background-size: cover;">User Rating</span>
+<select name="rate">
+  	<option value="1">1 Star</option>
+  	<option value="2">2 Star</option>
+  	<option value="3">3 Star</option>
+  	<option value="4">4 Star</option>
+  	<option value="5" selected>5 Star</option>
+</select>
+<br><br>    
+    
+   <button type="submit">Search</button>
+</form>
+
+</div>
+
+<script>
+function validateForm3() {
+	  let b1 = document.forms["Form_Rate"]["Book_title"].value;
+	  if (b1 == "") {
+	    swal("Book Tittle Must be filled out");
+	    return false;
+	  }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<div th:if="${PrintSwal == 'Book_Found'}">    
+<script>swal("Book Found Sucessfully");</script>
+</div>
+
+<div th:if="${PrintSwal == 'Book_Not_Found'}">    
+<script>swal("Sorry Book Not Available");</script>
+</div>
+
+
+<div th:if="${PrintSwal == 'Book_Details_Empty'}">    
+<script>swal("Sorry Books Not Available");</script>
+</div>
+
+
+<div th:if="${PrintSwal == 'RBook_Found'}">    
+<script>swal("Book Rate & Reviews Updated Sucessfully");</script>
+</div>
+
+<div th:if="${PrintSwal == 'RBook_Not_Found'}">    
+<script>swal("Sorry Book Not Available");</script>
+</div>
+
+
+</body>
+
+
+
+
+</html>

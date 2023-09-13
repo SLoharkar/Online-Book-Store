@@ -1,0 +1,110 @@
+<html xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="utf-8">
+      <title>Menu</title>
+ 
+ <!-- Include CSS File -->
+ 
+      <link th:href="@{/css/menu_style.css}" rel="stylesheet">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+  
+<style>
+.form-control{
+width: 200px;
+  padding: 10px;
+  border: 1px solid black;
+  
+}
+button {
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+</style>  
+  
+   <body>   
+      <nav>
+         <div class="logo">
+            Online Book Store
+         </div>
+         <label for="click" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         </label>
+         <ul>
+            <li><a href="/User_Home">Home</a></li>
+            <li><a href="/User_Books">Search Book</a></li>
+            <li><a class="active" href="/User_Buy_Book">Buy Book</a></li>
+            <li><a href="/Order_Details">Order Details</a></li>
+            <li><a href="#"><span th:text="${User}"></span></a></li>
+            <li><a href="/">Logout</a></li>
+         </ul>
+      </nav>
+
+      
+      
+      
+      
+<!-- Buy Book -->      
+<br>
+<h1><span style="background-color: yellow; color: black; background-size: cover;">Search Book</span></h1>
+ <form class="form" action="/user_Search_Buy_Book" method="post" id="Form_Search">
+  	<br><br>
+    <input type="text" class="form-control" name="Book_title" placeholder="Book title">
+    
+   <button type="submit">Search</button>
+</form>
+
+
+
+
+<!-- Buy Book Server -->
+<br>
+<div th:if="${PrintSwal == 'Book_Found'}">
+<h1><span style="background-color: yellow; color: black; background-size: cover;">Confirm Book Order</span></h1>
+ <form class="form" action="/user_Save_Buy_Book" method="post" id="Form_Search">
+  	<br><br>
+    <input style="background-color: white; color: black;" type="text" class="form-control" name="Book_name" placeholder="Book title" th:value="${Bname}">
+    <input style="background-color: white; color: black;" type="text" class="form-control" name="Price" placeholder="Book Price" th:value="${Bprice}"><br><br>
+    
+   <button type="submit">Buy</button>
+</form>
+</div>      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+      
+<div th:if="${PrintSwal == 'Book_Not_Found'}">    
+<script>swal("Sorry Book Not Available");</script>
+</div>    
+
+<div th:if="${PrintSwal == 'Buy_Sucess'}">    
+<script>swal("Book Buy Sucessfully");</script>
+</div>   
+
+
+
+
+
+</body>
+
+
+
+
+</html>

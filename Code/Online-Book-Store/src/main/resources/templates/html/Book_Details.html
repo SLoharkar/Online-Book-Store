@@ -1,0 +1,82 @@
+<html xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="utf-8">
+      <title>Menu</title>
+ 
+ <!-- Include CSS File -->
+ 
+      <link th:href="@{/css/menu_style.css}" rel="stylesheet">
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+ 
+ <style>
+ table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid black;
+  padding: 10px;
+  background-color: orange;
+}
+
+th {
+  background-color: yellow;
+}
+ 
+ </style>
+   
+   
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+   
+   <body>   
+      <nav>
+         <div class="logo">
+            Online Book Store
+         </div>
+         <label for="click" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         </label>
+         <ul>
+            <li><a href="/Admin_Home">Home</a></li>
+            <li><a href="/Book_Management">Book Management</a></li>
+            <li><a class="active" href="/Book_Details">Book Details</a></li>
+            <li><a href="/User_Details">User Details</a></li>
+            <li><a href="/Admin_Order_Details">Order Details</a></li>
+            <li><a href="#">Admin</a></li>
+            <li><a href="/">Logout</a></li>
+         </ul>
+      </nav>
+
+      
+        <table>
+                 <tr>
+                    <th>Book Tittle</th>
+                    <th>Author</th>
+                    <th>Reviews</th>
+                    <th>Rating</th>
+                    <th>Price</th>
+                </tr>
+                <tr th:each="BookArray : ${BookObject}">
+                <td th:text="${BookArray.getBook_title()}"></td>
+                <td th:text="${BookArray.getAuthor()}"></td>
+                <td th:text="${BookArray.getReviews()}"></td>
+                <td th:text="${BookArray.getRate()}"></td>
+                <td th:text="${BookArray.getPrice()}"></td>
+                
+                </tr>
+                     
+        </table>
+     
+      
+   
+   
+   
+      
+
+</body>
+</html>

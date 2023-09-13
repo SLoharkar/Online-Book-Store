@@ -1,0 +1,171 @@
+<html xmlns:th="https://www.thymeleaf.org">
+   <head>
+      <meta charset="utf-8">
+      <title>Menu</title>
+ 
+ <!-- Include CSS File -->
+ 
+      <link th:href="@{/css/menu_style.css}" rel="stylesheet">
+      
+        <link th:href="@{/css/button.css}" rel="stylesheet">
+    
+      
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+ 
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+ 
+ 
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   </head>
+<style>
+button {
+  background-color: green;
+  color: white;
+  font-size: 16px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+}
+   select {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid black;
+}
+
+.form-control{
+width: 200px;
+  padding: 10px;
+  border: 1px solid black;
+
+}
+
+
+.heading {
+  font-size: 25px;
+  margin-right: 25px;
+  color:white;
+}
+
+
+   </style>
+   
+     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@7.12.15/dist/sweetalert2.all.min.js"></script>  
+   
+   <body>   
+      <nav>
+         <div class="logo">
+            Online Book Store
+         </div>
+         
+         <label for="click" class="menu-btn">
+         <i class="fas fa-bars"></i>
+         </label>
+         <ul>
+            <li><a href="/Admin_Home">Home</a></li>
+            <li><a class="active" href="/Book_Management">Book Management</a></li>
+            <li><a href="/Book_Details">Book Details</a></li>
+            <li><a href="/User_Details">User Details</a></li>
+            <li><a href="/Admin_Order_Details">Order Details</a></li>
+            <li><a href="#">Admin</a></li>
+            <li><a href="/">Logout</a></li>
+         </ul>
+      </nav>
+      
+<br>
+     
+&nbsp;<h2><span style="background-color: yellow; color: black; background-size: cover;">Choose Book Operation</span></h2>
+
+&nbsp;
+<form action="/selectoperation" method="post" id="form1">  
+<select id="book_operation" name="book_operation">
+  	<option value="None">None</option>
+    <option value="Add">Add</option>
+    <option value="Delete">Delete</option>
+ </select> <br><br>
+
+<button type="submit">Submit</button>
+
+</form>
+
+<div th:if="${selectAdd == 'Add'}">
+<br>
+<h1><span style="background-color: yellow; color: black; background-size: cover;">Book Registration Form</span></h1>
+
+ <form class="form" action="/book_Add" method="post" onsubmit="return validateForm1()" id="Form_Add">
+  	<br>
+    <input type="text" class="form-control" name="Book_title" placeholder="Book title" value="Mahabharat">
+    <input type="text" class="form-control" name="Author" placeholder="Author" value="Shri Krishna">
+ 	<input type="text" class="form-control" name="Reviews" placeholder="Reviews" value="Radhe Radhe">
+ 		<input type="text" class="form-control" name="Price" placeholder="Price" value="3067"><br><br>      
+<span class="heading" style="background-color: blue; color: white; background-size: cover;">User Rating</span><br>
+<select name="rate">
+  	<option value="1">1 Star</option>
+  	<option value="2">2 Star</option>
+  	<option value="3">3 Star</option>
+  	<option value="4">4 Star</option>
+  	<option value="5" selected>5 Star</option>
+</select>
+    
+   <button type="submit">Add</button>
+</form>
+
+</div>
+<script>
+function validateForm1() {
+	  let b1 = document.forms["Form_Add"]["Book_title"].value;
+	  let b2 = document.forms["Form_Add"]["Author"].value;
+	  let b3 = document.forms["Form_Add"]["Reviews"].value;
+	  let b4 = document.forms["Form_Add"]["Price"].value;
+	  if (b1 == "" || b2 == "" || b3 == "" || b4 == "") {
+	    swal("Please filled out filed");
+	    return false;
+	  }
+}
+</script>
+
+
+
+<div th:if="${selectDelete == 'Delete'}">
+<br>
+<h1><span style="background-color: yellow; color: black; background-size: cover;">Delete Book By Title</span></h1>
+
+ <form class="form" action="/book_Delete" method="post" onsubmit="return validateForm2()" id="Form_Delete">
+  	<br><br>
+    <input type="text" class="form-control" name="Book_title" placeholder="Book title" value="Mahabharat"><br><br>
+    
+   <button type="submit">Delete</button>
+</form>
+
+</div>
+
+<script>
+function validateForm2() {
+	  let b1 = document.forms["Form_Delete"]["Book_title"].value;
+	  if (b1 == "") {
+	    swal("Book Tittle Must be filled out");
+	    return false;
+	  }
+}
+</script>
+
+
+
+<div th:if="${PrintSwal == 'Book_Exist'}">    
+<script>swal("Book Already Exists");</script>
+</div>
+
+<div th:if="${PrintSwal == 'Add_Sucess'}">    
+<script>swal("Book Registration Sucessfully");</script>
+</div>
+
+<div th:if="${PrintSwal == 'Delete_Sucess'}">    
+<script>swal("Book Delete Sucessfully");</script>
+</div>
+
+<div th:if="${PrintSwal == 'Delete_Failed'}">    
+<script>swal("Sorry Book not Found");</script>
+</div>
+
+    
+</body>
+</html>
