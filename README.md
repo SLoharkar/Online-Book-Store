@@ -1,5 +1,5 @@
 # Online-Book-Store
-Online Book Store Using H2-Database and MySQL Database (Thymleaf)
+Online Book Store Using Spring Boot With H2 and MySQL Database (Thymleaf)
 
 ## Features
 - Thymleaf Template
@@ -9,13 +9,6 @@ Online Book Store Using H2-Database and MySQL Database (Thymleaf)
 - Sweetalerts Dialog Box
 - Spring Boot JPA Crud Repository
 - Easy to Understand Code
-
-## Description
-- Automatic Generated Parking ID Based Upon Database Data
-- Parking Slots Automatically Remove and Insert Based upon Usage of User
-- Manage View and Data Change According User
-  - Admin Can View User, Book and Order Details 
-  - User1 Can View Only Own Data not Able to View User2 Order Details
  
 ## Project Information
 Online book store where users can browse, search, and purchase books. The system should include features like User Registration, Book Management, Book details, and Order Management. Users should also be able to Rate and Review Books. The system can utilize a database to store information user, book and order data.
