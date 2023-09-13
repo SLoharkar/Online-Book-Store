@@ -122,6 +122,12 @@ https://github.com/SLoharkar/Online-Book-Store/assets/68845746/c8b7cc2f-a293-48c
 
 <img width="32%" src="Screenshots/42.png">
 
+<img width="32%" src="Screenshots/43.png">
+
+<img width="32%" src="Screenshots/44.png">
+
+<img width="32%" src="Screenshots/45.png">
+
 
 </p>
 
